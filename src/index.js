@@ -16,8 +16,8 @@ function submitRecipe(e) {
     ingredientForm.innerHTML += `<input type="text" id="ingredient-input"><input type="sumbit>`
     
     ingredientForm.addEventListener("submit", submitIngredient)
-
-    li.append(p, ingredientForm)
+    const ingredientList = document.createElement('ul')
+    li.append(p, ingredientForm, ingredientList)
     recipeList.appendChild(li)
 
     recipeForm.reset()
@@ -26,5 +26,9 @@ function submitRecipe(e) {
 function submitIngredient(e) {
     e.preventDefault()
     const ingredientInput = e.target.children[0].value
-    console.log(e.target)
+    const ingredientList = e.target.nextElementSibling
+    
+    const li = document.createElement('li')
+    li.innerText = ingredientInput
+    ingredientList.appendChild(li)
 }
