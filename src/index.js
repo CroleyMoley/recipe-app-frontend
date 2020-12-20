@@ -2,15 +2,15 @@ const recipeForm = document.getElementById("recipe-form")
 const recipeInput = document.getElementById("recipe-input")
 const recipeList = document.getElementById("recipe-list")
 
-recipeForm.addEventListener("submit", submitRecipe)
+recipeForm.addEventListener("submit", renderRecipe)
 
-function submitRecipe(e) {
+function renderRecipe(e) {
     e.preventDefault()
     console.log(e.target.children[0].value)
     const li = document.createElement('li')
     const p = document.createElement('p')
     p.innerText = recipeInput.value
-    
+    console.log(e.target.children[0].value)
 
     const ingredientForm = document.createElement('form')
     ingredientForm.innerHTML += `<input type="text" id="ingredient-input"><input type="sumbit>`
@@ -21,6 +21,9 @@ function submitRecipe(e) {
     recipeList.appendChild(li)
 
     recipeForm.reset()
+}
+
+function submitRecipe() {
 }
 
 function submitIngredient(e) {
