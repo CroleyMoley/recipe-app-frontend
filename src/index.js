@@ -1,9 +1,10 @@
 const recipeForm = document.getElementById("recipe-form")
 const recipeInput = document.getElementById("recipe-input")
 const recipeList = document.getElementById("recipe-list")
+const recipeUrl = `http://localhost:3000/recipes`
 
 recipeForm.addEventListener("submit", renderRecipe)
-
+//render recipe to the dom
 function renderRecipe(e) {
     e.preventDefault()
     console.log(e.target.children[0].value)
@@ -22,8 +23,9 @@ function renderRecipe(e) {
 
     recipeForm.reset()
 }
-
+//fetch request
 function submitRecipe() {
+
 }
 
 function submitIngredient(e) {
