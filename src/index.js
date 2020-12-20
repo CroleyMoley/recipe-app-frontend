@@ -31,4 +31,5 @@ function submitIngredient(e) {
     const li = document.createElement('li')
     li.innerText = ingredientInput
     ingredientList.appendChild(li)
+    e.target.reset()
 }
