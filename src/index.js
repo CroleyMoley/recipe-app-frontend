@@ -3,6 +3,13 @@ const recipeInput = document.getElementById("recipe-input")
 const recipeList = document.getElementById("recipe-list")
 const recipeUrl = `http://localhost:3000/recipes`
 
+//get request to see recipes to the DOM
+function fetchRecipes() {
+    fetch(recipeUrl)
+    .then(res => res.json())
+    .then(console.log)
+}
+
 recipeForm.addEventListener("submit", submitRecipe)
 //fetch request
 function submitRecipe() {
@@ -18,10 +25,9 @@ function submitRecipe() {
         })
     }
     fetch(recipeUrl, configObj)
-    .then(res => res.json())
-    .then(console.log)
     renderRecipe()
 }
+
 //render recipe to the dom
 function renderRecipe() {
     event.preventDefault()
@@ -45,3 +51,5 @@ function submitIngredient(e) {
     ingredientList.appendChild(li)
     e.target.reset()
 }
+
+fetchRecipes()
