@@ -7,7 +7,7 @@ const recipeUrl = `http://localhost:3000/recipes`
 function fetchRecipes() {
     fetch(recipeUrl)
     .then(res => res.json())
-    .then(console.log)
+    .then(recipes => recipes.forEach(recipe => renderRecipe(recipe.title)))
 }
 
 recipeForm.addEventListener("submit", submitRecipe)
@@ -25,15 +25,15 @@ function submitRecipe() {
         })
     }
     fetch(recipeUrl, configObj)
-    renderRecipe()
+    renderRecipe(recipeInput.value)
 }
 
 //render recipe to the dom
-function renderRecipe() {
-    event.preventDefault()
+function renderRecipe(recipe) {
+    console.log(recipe)
     const li = document.createElement('li')
     const p = document.createElement('p')
-    p.innerText = recipeInput.value
+    p.innerText = recipe
     const ingredientForm = document.createElement('form')
     ingredientForm.innerHTML += `<input type="text" id="ingredient-input"><input type="sumbit>`
     ingredientForm.addEventListener("submit", submitIngredient)
