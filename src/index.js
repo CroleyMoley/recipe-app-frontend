@@ -2,6 +2,7 @@ const recipeForm = document.getElementById("recipe-form")
 const recipeInput = document.getElementById("recipe-input")
 const recipeList = document.getElementById("recipe-list")
 const recipeUrl = `http://localhost:3000/recipes`
+const ingredientUrl = `http://localhost:3000/ingredients`
 
 //get request to see recipes to the DOM
 function fetchRecipes() {
@@ -36,13 +37,13 @@ function renderRecipe(recipe) {
     p.innerText = recipe
     const ingredientForm = document.createElement('form')
     ingredientForm.innerHTML += `<input type="text" id="ingredient-input"><input type="sumbit>`
-    ingredientForm.addEventListener("submit", submitIngredient)
+    ingredientForm.addEventListener("submit", renderIngredient)
     const ingredientList = document.createElement('ul')
     li.append(p, ingredientForm, ingredientList)
     recipeList.appendChild(li)
     recipeForm.reset()
 }
-function submitIngredient(e) {
+function renderIngredient(e) {
     e.preventDefault()
     const ingredientInput = e.target.children[0].value
     const ingredientList = e.target.nextElementSibling
@@ -51,5 +52,6 @@ function submitIngredient(e) {
     ingredientList.appendChild(li)
     e.target.reset()
 }
+
 
 fetchRecipes()
