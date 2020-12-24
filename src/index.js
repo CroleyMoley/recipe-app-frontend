@@ -8,7 +8,7 @@ const ingredientUrl = `http://localhost:3000/ingredients`
 function fetchRecipes() {
     fetch(recipeUrl)
     .then(res => res.json())
-    .then(recipes => recipes.forEach(renderRecipe))
+    .then(recipes => recipes.forEach(data => renderRecipe(data.data)))
 }
 
 recipeForm.addEventListener("submit", submitRecipe)
@@ -27,21 +27,23 @@ function submitRecipe() {
     }
     fetch(recipeUrl, configObj)
     .then(res => res.json())
-    .then(renderRecipe(recipeInput.value))
+    .then(renderRecipe(data.data))
     
 }
 
 //render recipe to the dom
 function renderRecipe(recipe) {
-    //console.log(recipe)
-    
+    console.log(recipe)
     const li = document.createElement('li')
     li.dataset.id = recipe.id
+
     const p = document.createElement('p')
-    p.innerText = recipe.title
+    p.innerText = recipe.attributes.title
+
     const ingredientForm = document.createElement('form')
-    ingredientForm.innerHTML += `<input type="text" id="ingredient-input"><input type="sumbit>`
+    ingredientForm.innerHTML += `<input type="text" id="ingredient-input"><input type="submit>`
     ingredientForm.addEventListener("submit", renderIngredient)
+
     const ingredientList = document.createElement('ul')
     li.append(p, ingredientForm, ingredientList)
     recipeList.appendChild(li)
@@ -49,7 +51,6 @@ function renderRecipe(recipe) {
 }
 function renderIngredient(e) {
     e.preventDefault()
-    console.log(e.target.parentElement.dataset.id)
     const ingredientInput = e.target.children[0].value
     const ingredientList = e.target.nextElementSibling
     const recipeId = e.target.parentElement.id
@@ -63,7 +64,7 @@ function renderIngredient(e) {
     e.target.reset()
 }
 
-function submitIngredient(ingredient) {
+function submitIngredient(ingredient, recipeId) {
     //console.log(ingredient)
     fetch(ingredientUrl, {
         method: "POST",
