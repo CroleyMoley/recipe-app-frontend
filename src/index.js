@@ -53,7 +53,7 @@ function renderIngredient(e) {
     e.preventDefault()
     const ingredientInput = e.target.children[0].value
     const ingredientList = e.target.nextElementSibling
-    const recipeId = e.target.parentElement.id
+    const recipeId = e.target.parentElement.dataset.id
 
     const li = document.createElement('li')
     li.innerText = ingredientInput
