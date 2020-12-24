@@ -8,7 +8,7 @@ const ingredientUrl = `http://localhost:3000/ingredients`
 function fetchRecipes() {
     fetch(recipeUrl)
     .then(res => res.json())
-    .then(recipes => recipes.forEach(recipe => renderRecipe(recipe.title)))
+    .then(recipes => recipes.forEach(renderRecipe))
 }
 
 recipeForm.addEventListener("submit", submitRecipe)
@@ -26,15 +26,19 @@ function submitRecipe() {
         })
     }
     fetch(recipeUrl, configObj)
-    renderRecipe(recipeInput.value)
+    .then(res => res.json())
+    .then(renderRecipe(recipeInput.value))
+    
 }
 
 //render recipe to the dom
 function renderRecipe(recipe) {
-    console.log(recipe)
+    //console.log(recipe)
+    
     const li = document.createElement('li')
+    li.dataset.id = recipe.id
     const p = document.createElement('p')
-    p.innerText = recipe
+    p.innerText = recipe.title
     const ingredientForm = document.createElement('form')
     ingredientForm.innerHTML += `<input type="text" id="ingredient-input"><input type="sumbit>`
     ingredientForm.addEventListener("submit", renderIngredient)
@@ -45,12 +49,33 @@ function renderRecipe(recipe) {
 }
 function renderIngredient(e) {
     e.preventDefault()
+    console.log(e.target.parentElement.dataset.id)
     const ingredientInput = e.target.children[0].value
     const ingredientList = e.target.nextElementSibling
+    const recipeId = e.target.parentElement.id
+
     const li = document.createElement('li')
     li.innerText = ingredientInput
     ingredientList.appendChild(li)
+
+    submitIngredient(ingredientInput, recipeId)
+
     e.target.reset()
+}
+
+function submitIngredient(ingredient) {
+    //console.log(ingredient)
+    fetch(ingredientUrl, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
+            name: ingredient,
+            recipe_id: recipeId
+        })
+    })
 }
 
 
