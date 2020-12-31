@@ -28,7 +28,7 @@ function submitRecipe() {
     }
     fetch(recipeUrl, configObj)
     .then(res => res.json())
-    .then(data => renderRecipe(data.data.attributes))
+    .then(data => renderRecipe(data.data))
     
 }
 
@@ -41,6 +41,10 @@ function renderRecipe(recipe) {
     const p = document.createElement('p')
     p.innerText = recipe.attributes.title
 
+    const deleteBtn = document.createElement("button")
+    deleteBtn.innerText = "delete"
+    deleteBtn.addEventListener("click", deleteRecipe)
+
     const ingredientForm = document.createElement('form')
     ingredientForm.innerHTML += `<input type="text" id="ingredient-input"><input type="submit>`
     ingredientForm.addEventListener("submit", renderIngredient)
@@ -52,9 +56,17 @@ function renderRecipe(recipe) {
         ingredientList.appendChild(ingredientLi)
     })
 
-    li.append(p, ingredientForm, ingredientList)
+    li.append(p, deleteBtn, ingredientForm, ingredientList)
     recipeList.appendChild(li)
     recipeForm.reset()
+}
+
+function deleteRecipe(e) {
+    const recipeId = e.target.parentElement.dataset.id
+    fetch(`${recipeUrl}/${recipeId}`, {
+        method: "DELETE"
+    })
+    e.target.parentElement.remove()
 }
 
 
