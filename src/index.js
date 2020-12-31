@@ -74,7 +74,6 @@ function renderIngredient(e) {
     e.target.reset()
 }
 
-
 function submitIngredient(ingredient, recipeId) {
     //console.log(ingredient)
     fetch(ingredientUrl, {
