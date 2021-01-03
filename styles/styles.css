@@ -6,6 +6,7 @@ input{
     font-size: 16px;
     font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
     align-self: center;
+    text-align: center;
   }
 
 button{
@@ -15,4 +16,33 @@ button{
     right: 100px;
   }
 
-  
+h1{
+  margin: auto;
+  width: 50%;
+  padding: 20px;
+  border: 2px solid blue;
+  text-align: center;
+}
+
+h2{
+  text-align: center;
+}
+
+h3{
+  text-align: center;
+}
+
+h4{
+  margin: 50px;
+  text-align: center;
+}
+
+li{
+  text-align: center;
+  list-style-position: inside;
+}
+
+form{
+  text-align: center;
+  margin: 20px;
+}
