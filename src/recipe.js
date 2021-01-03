@@ -47,7 +47,8 @@ class Recipe {
             ingredientObj.renderIngredient(ingredientList)
         })
 
-        li.append(r, deleteBtn, ingredientForm, ingredientList)
+        li.append(r, ingredientForm, ingredientList)
+        ingredientForm.append(deleteBtn)
         recipeList.appendChild(li)
         recipeForm.reset()
     }
