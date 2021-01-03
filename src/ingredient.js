@@ -49,8 +49,8 @@ class Ingredient {
     }
     
     deleteIngredient(){
-        const ingredientId = this.dataset.id
-        fetch(`${ingredientUrl}`, {
+        const ingredientId = this.parentElement.dataset.id
+        fetch(`${recipeUrl}/${ingredientId}`, {
             method: "DELETE"
         })
         this.parentElement.remove()

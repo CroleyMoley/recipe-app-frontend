@@ -36,6 +36,7 @@ class Recipe {
         deleteBtn.innerText = "delete"
         deleteBtn.addEventListener("click", this.deleteRecipe)
 
+
         const ingredientForm = document.createElement('form')
         ingredientForm.innerHTML += `<input type="text" id="ingredient-input"><input type="submit>`
         ingredientForm.addEventListener("submit", Ingredient.createIngredient)
@@ -47,8 +48,7 @@ class Recipe {
             ingredientObj.renderIngredient(ingredientList)
         })
 
-        li.append(r, ingredientForm, ingredientList)
-        ingredientForm.append(deleteBtn)
+        li.append(r, deleteBtn, ingredientForm, ingredientList)
         recipeList.appendChild(li)
         recipeForm.reset()
     }
