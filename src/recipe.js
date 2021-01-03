@@ -33,10 +33,12 @@ class Recipe {
         r.innerText = this.title
 
         const deleteBtn = document.createElement("button")
-        deleteBtn.innerText = "delete"
+        deleteBtn.innerText = "Delete Recipe"
         deleteBtn.addEventListener("click", this.deleteRecipe)
 
-
+        const ingredientSubmit = document.createElement("button")
+        ingredientSubmit.innerText = "Create Recipe"
+        ingredientSubmit.addEventListener("submit", Ingredient.create)
         const ingredientForm = document.createElement('form')
         ingredientForm.innerHTML += `<input type="text" id="ingredient-input"><input type="submit>`
         ingredientForm.addEventListener("submit", Ingredient.createIngredient)

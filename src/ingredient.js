@@ -29,7 +29,7 @@ class Ingredient {
         ingredientList.appendChild(li)
 
     }
-
+    
     static submitIngredient(ingredient, ingredientList, recipeId){
         fetch(ingredientUrl, {
             method: "POST",
