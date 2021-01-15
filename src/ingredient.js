@@ -83,7 +83,13 @@ class Ingredient {
     
    updateIngredient(){
     event.preventDefault()
-        
+    const newItem = document.createElement('li')
+    newItem.innerHTML = "#{edit-input}"
+    listItem.parentElement.replaceChild(newItem)
+
+    
+    
+    
    }
         
 } 
