@@ -1,6 +1,6 @@
 class Recipe {
     static allRecipes = []
-
+    
     constructor(recipe){
     this.id = recipe.id
     this.title = recipe.attributes.title
@@ -25,7 +25,7 @@ class Recipe {
         })
     }
 
-    renderRecipe(){
+     renderRecipe(){
         const li = document.createElement('li')
         li.dataset.id = this.id
         
@@ -46,7 +46,11 @@ class Recipe {
         const ingredientList = document.createElement('ul')
         this.ingredients.forEach(ingredient => {
             let ingredientObj = new Ingredient(ingredient)
-            console.log(ingredientObj)
+            //console.log(ingredientObj)
+            
+            
+            
+           // alert(ingredientObj.name)
             ingredientObj.renderIngredient(ingredientList)
         })
 
@@ -64,7 +68,7 @@ class Recipe {
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-                name: recipeInput.value
+                title: recipeInput.value
             })
         }
         fetch(recipeUrl, configObj)
@@ -82,4 +86,8 @@ class Recipe {
         })
         this.parentElement.remove()
     }
+
+     
+    
 }
+

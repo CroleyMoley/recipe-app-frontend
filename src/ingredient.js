@@ -1,9 +1,10 @@
 class Ingredient {
-
+  
     constructor(ingredient) {
         this.recipe_id = ingredient.recipe_id
         this.name = ingredient.name
         this.id = ingredient.id
+        
     }
 
     static createIngredient(e){
@@ -21,12 +22,19 @@ class Ingredient {
         const li = document.createElement('li')
         li.dataset.id = this.recipe_id
         li.innerText = this.name
-        
+      
         const deleteBtn = document.createElement('button')
         deleteBtn.addEventListener("click", this.deleteIngredient)
         deleteBtn.innerText = "X"
         li.appendChild(deleteBtn)
         ingredientList.appendChild(li)
+
+        const editBtn = document.createElement('button')
+        editBtn.addEventListener("click", this.editIngredient.bind(this))
+        editBtn.innerText = "Edit"
+        li.appendChild(editBtn)
+        ingredientList.appendChild(li)
+
 
     }
     
@@ -47,6 +55,7 @@ class Ingredient {
             newIngredient.renderIngredient(ingredientList)
         })
     }
+
     
     deleteIngredient(){
         const ingredientId = this.parentElement.dataset.id
@@ -55,6 +64,26 @@ class Ingredient {
         })
         this.parentElement.remove()
     }
+   
     
+    editIngredient(){
+        const editForm = document.createElement("form")
+        editForm.id = "edit-form"
+        const editInput = document.createElement("input")
+        editInput.id = "edit-input"
+        
+        const editBtn = document.createElement('button')
+        editBtn.innerText = "Submit"
+        editForm.addEventListener("submit", this.updateIngredient.bind(this))
+        editForm.append(editInput, editBtn)
+        event.target.parentElement.appendChild(editForm)
+
+        
+    }
     
-}
+   updateIngredient(){
+    event.preventDefault()
+        
+   }
+        
+} 
