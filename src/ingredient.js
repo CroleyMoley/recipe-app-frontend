@@ -66,6 +66,8 @@ class Ingredient {
     }
    
     
+   
+    
     editIngredient(){
         const editForm = document.createElement("form")
         editForm.id = "edit-form"
@@ -81,11 +83,23 @@ class Ingredient {
         
     }
     
-   updateIngredient(){
-    event.preventDefault()
-    const newItem = document.createElement('li')
-    newItem.innerHTML = "#{edit-input}"
-    listItem.parentElement.replaceChild(newItem)
+     updateIngredient(e){
+    e.preventDefault()
+    let newName = document.getElementById('edit-input').value;
+    e.target.parentElement.innerHTML = e.target.parentElement.innerHTML.replace(this.name, newName);
+    document.getElementById('edit-form').innerHTML = ''
+    document.getElementById('editinput')
+    
+    
+    
+        
+
+    
+    
+    
+    
+
+   
 
     
     
